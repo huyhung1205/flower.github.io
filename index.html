@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy 20/10 🎉</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@700;800;900&display=swap"
+    rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      font-family: 'Nunito', sans-serif;
+      overflow: hidden
+    }
+
+    /* ═══════════════════════════
+   POP-ART / SCRAPBOOK THEME
+   ═══════════════════════════ */
+
+    body {
+      background: #fff9c4;
+      background-image:
+        radial-gradient(circle, rgba(0, 0, 0, .06) 1px, transparent 1px),
+        radial-gradient(circle, rgba(0, 0, 0, .04) 1px, transparent 1px);
+      background-size: 28px 28px, 14px 14px;
+      background-position: 0 0, 7px 7px;
+    }
+
+    /* ══ INTRO ══ */
+    #intro {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #fff9c4;
+      background-image:
+        radial-gradient(circle, rgba(0, 0, 0, .06) 1px, transparent 1px),
+        radial-gradient(circle, rgba(0, 0, 0, .04) 1px, transparent 1px);
+      background-size: 28px 28px, 14px 14px;
+      background-position: 0 0, 7px 7px;
+      z-index: 100;
+      gap: 0;
+    }
+
+    /* huge pop-art title */
+    .pop-title {
+      font-family: 'Lilita One', cursive;
+      font-size: clamp(3rem, 13vw, 9rem);
+      color: #fff;
+      -webkit-text-stroke: clamp(2px, 4px, 5px) #111;
+      text-stroke: 4px #111;
+      line-height: .9;
+      text-align: center;
+      text-shadow: 6px 6px 0 #ff3a6e, 10px 10px 0 #111;
+      animation: popIn .5s cubic-bezier(.17, .67, .26, 1.4) both;
+      padding: 0 16px;
+    }
+
+    @keyframes popIn {
+      from {
+        transform: scale(.5) rotate(-8deg);
+        opacity: 0
+      }
+
+      to {
+        transform: scale(1) rotate(0deg);
+        opacity: 1
+      }
+    }
+
+    .pop-sub {
+      font-size: clamp(.9rem, 3vw, 1.5rem);
+      font-weight: 900;
+      background: #111;
+      color: #fff9c4;
+      padding: 6px 20px;
+      margin: 14px 0 24px;
+      letter-spacing: .15rem;
+      transform: rotate(-1.5deg);
+      display: inline-block;
+      box-shadow: 4px 4px 0 #ff3a6e;
+    }
+
+    /* big bouncy button */
+    #goBtn {
+      background: #ff3a6e;
+      color: #fff;
+      border: 3px solid #111;
+      border-radius: 12px;
+      font-family: 'Lilita One', cursive;
+      font-size: clamp(1.2rem, 4vw, 1.8rem);
+      padding: 14px 44px;
+      cursor: pointer;
+      box-shadow: 5px 5px 0 #111;
+      transition: transform .1s, box-shadow .1s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #goBtn:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 7px 7px 0 #111
+    }
+
+    #goBtn:active {
+      transform: translate(2px, 2px);
+      box-shadow: 3px 3px 0 #111
+    }
+
+    /* intro deco stickers */
+    .i-sticker {
+      position: absolute;
+      font-size: var(--sz);
+      animation: stickerWobble var(--d) ease-in-out var(--del) infinite alternate;
+    }
+
+    @keyframes stickerWobble {
+      from {
+        transform: rotate(var(--r1)) scale(1)
+      }
+
+      to {
+        transform: rotate(var(--r2)) scale(1.1)
+      }
+    }
+
+    /* ══════════ MAIN SCENE ══════════ */
+    #scene {
+      position: fixed;
+      inset: 0;
+      display: none;
+      overflow: hidden
+    }
+
+    /* confetti canvas */
+    #confCvs {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0
+    }
+
+    /* ══ LAYOUT: banner + grid ══ */
+    .scene-inner {
+      position: relative;
+      z-index: 2;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 18px 16px 12px;
+      gap: 14px;
+      overflow-y: auto;
+      scrollbar-width: thin;
+    }
+
+    /* ── TOP BANNER ── */
+    .banner {
+      width: 100%;
+      max-width: 860px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .banner-title {
+      font-family: 'Lilita One', cursive;
+      font-size: clamp(1.8rem, 6vw, 4rem);
+      color: #111;
+      text-shadow: 3px 3px 0 #ff3a6e;
+      text-align: center;
+      animation: headBounce 1.5s ease-in-out infinite;
+    }
+
+    @keyframes headBounce {
+
+      0%,
+      100% {
+        transform: translateY(0)
+      }
+
+      50% {
+        transform: translateY(-6px)
+      }
+    }
+
+    .banner-emoji {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      animation: spin3d 3s linear infinite
+    }
+
+    @keyframes spin3d {
+      0% {
+        transform: rotateY(0deg)
+      }
+
+      100% {
+        transform: rotateY(360deg)
+      }
+    }
+
+    /* ── DATE TAPE ── */
+    .date-tape {
+      background: #ff3a6e;
+      color: #fff;
+      font-weight: 900;
+      font-size: clamp(.8rem, 2.5vw, 1.1rem);
+      padding: 6px 24px;
+      letter-spacing: .2rem;
+      transform: rotate(-1deg);
+      flex-shrink: 0;
+      border: 2px solid #111;
+      box-shadow: 3px 3px 0 #111;
+    }
+
+    /* ── FLOWER ROW (CSS flowers) ── */
+    .flower-row {
+      display: flex;
+      align-items: flex-end;
+      gap: clamp(10px, 2vw, 22px);
+      flex-shrink: 0;
+    }
+
+    /* ── CSS flower component ── */
+    .css-flower {
+      position: relative;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center
+    }
+
+    .petals-ring {
+      position: relative;
+      width: var(--sz);
+      height: var(--sz);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .petal {
+      position: absolute;
+      width: calc(var(--sz)*.4);
+      height: calc(var(--sz)*.55);
+      background: var(--pc);
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      transform-origin: 50% 100%;
+      border: 2px solid rgba(0, 0, 0, .15);
+    }
+
+    .petal:nth-child(1) {
+      transform: rotate(0deg) translateY(-38%)
+    }
+
+    .petal:nth-child(2) {
+      transform: rotate(45deg) translateY(-38%)
+    }
+
+    .petal:nth-child(3) {
+      transform: rotate(90deg) translateY(-38%)
+    }
+
+    .petal:nth-child(4) {
+      transform: rotate(135deg) translateY(-38%)
+    }
+
+    .petal:nth-child(5) {
+      transform: rotate(180deg) translateY(-38%)
+    }
+
+    .petal:nth-child(6) {
+      transform: rotate(225deg) translateY(-38%)
+    }
+
+    .petal:nth-child(7) {
+      transform: rotate(270deg) translateY(-38%)
+    }
+
+    .petal:nth-child(8) {
+      transform: rotate(315deg) translateY(-38%)
+    }
+
+    .flower-center {
+      position: absolute;
+      width: calc(var(--sz)*.38);
+      height: calc(var(--sz)*.38);
+      background: var(--cc);
+      border-radius: 50%;
+      border: 2px solid rgba(0, 0, 0, .2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: calc(var(--sz)*.2);
+      z-index: 2;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, .15);
+    }
+
+    .flower-stem {
+      width: 4px;
+      height: var(--stemh, 40px);
+      background: linear-gradient(180deg, #5cb85c, #3a7a32);
+      border-radius: 2px;
+      border: 1px solid #2d5a27;
+      position: relative;
+    }
+
+    .flower-stem::before {
+      content: '';
+      position: absolute;
+      width: 16px;
+      height: 10px;
+      background: #5cb85c;
+      border-radius: 50% 50% 0 50%;
+      border: 1px solid #3a7a32;
+      top: 30%;
+      left: 2px;
+    }
+
+    .flower-stem::after {
+      content: '';
+      position: absolute;
+      width: 14px;
+      height: 9px;
+      background: #66bb6a;
+      border-radius: 50% 0 50% 50%;
+      border: 1px solid #3a7a32;
+      top: 55%;
+      right: 2px;
+    }
+
+    /* flower sway animation */
+    .css-flower {
+      animation: sway var(--sw, 3s) ease-in-out var(--sd, 0s) infinite alternate
+    }
+
+    @keyframes sway {
+      from {
+        transform: rotate(calc(var(--sl, -3deg)))
+      }
+
+      to {
+        transform: rotate(calc(var(--sr, 3deg)))
+      }
+    }
+
+    /* ── WISH CARDS GRID ── */
+    .cards-wrap {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+      gap: 12px;
+      width: 100%;
+      max-width: 860px;
+    }
+
+    .wish-card {
+      background: var(--bg);
+      border: 3px solid #111;
+      border-radius: 16px;
+      padding: 16px 18px;
+      box-shadow: 4px 4px 0 #111;
+      cursor: pointer;
+      transition: transform .15s, box-shadow .15s;
+      position: relative;
+      overflow: hidden;
+      animation: cardSlideIn .5s cubic-bezier(.17, .67, .26, 1.4) var(--ci) both;
+    }
+
+    @keyframes cardSlideIn {
+      from {
+        transform: translateY(30px) rotate(var(--cr, 0deg));
+        opacity: 0
+      }
+
+      to {
+        opacity: 1
+      }
+    }
+
+    .wish-card:hover {
+      transform: translate(-3px, -4px) rotate(var(--hover-r, 0deg));
+      box-shadow: 7px 7px 0 #111
+    }
+
+    .wish-card:active {
+      transform: translate(1px, 1px);
+      box-shadow: 2px 2px 0 #111
+    }
+
+    /* washi tape strip on card */
+    .wish-card::before {
+      content: '';
+      position: absolute;
+      top: -3px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 18px;
+      background: var(--tape, rgba(255, 200, 0, .5));
+      border-radius: 2px;
+      opacity: .75;
+      border: 1px solid rgba(0, 0, 0, .1);
+    }
+
+    .card-icon {
+      font-size: 2.2rem;
+      display: block;
+      margin-bottom: 6px;
+      animation: iconBounce 2s ease-in-out var(--ci) infinite
+    }
+
+    @keyframes iconBounce {
+
+      0%,
+      100% {
+        transform: scale(1)
+      }
+
+      50% {
+        transform: scale(1.15) rotate(5deg)
+      }
+    }
+
+    .card-title {
+      font-weight: 900;
+      font-size: 1rem;
+      color: #111;
+      margin-bottom: 4px
+    }
+
+    .card-body {
+      font-size: .85rem;
+      color: #333;
+      font-weight: 600;
+      line-height: 1.55
+    }
+
+    /* ── BOTTOM SIG ── */
+    .bottom-sig {
+      font-family: 'Lilita One', cursive;
+      font-size: clamp(1rem, 3vw, 1.5rem);
+      color: #111;
+      background: #fff9c4;
+      border: 3px solid #111;
+      padding: 8px 24px;
+      border-radius: 50px;
+      box-shadow: 4px 4px 0 #ff3a6e;
+      flex-shrink: 0;
+      text-align: center;
+      margin-bottom: 4px;
+    }
+
+    /* ══ CONFETTI burst on click ══ */
+    .burst-piece {
+      position: fixed;
+      pointer-events: none;
+      z-index: 50;
+      width: var(--w);
+      height: var(--h);
+      background: var(--col);
+      border-radius: var(--br);
+      animation: burst var(--dur) ease-out forwards;
+    }
+
+    @keyframes burst {
+      0% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 1
+      }
+
+      100% {
+        transform: translate(var(--tx), var(--ty)) rotate(var(--tr));
+        opacity: 0
+      }
+    }
+
+    /* ══ STAMP ══ */
+    .stamp {
+      position: fixed;
+      font-family: 'Lilita One', cursive;
+      font-size: clamp(1.8rem, 6vw, 4rem);
+      color: var(--sc, #ff3a6e);
+      border: 4px solid currentColor;
+      border-radius: 8px;
+      padding: 4px 10px;
+      transform: rotate(var(--rot, 0deg));
+      pointer-events: none;
+      z-index: 4;
+      opacity: .12;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ══ INTRO ══ -->
+  <div id="intro">
+    <div class="i-sticker" style="top:5%;left:3%;--sz:3rem;--d:2s;--del:0s;--r1:-10deg;--r2:10deg">🌸</div>
+    <div class="i-sticker" style="top:8%;right:5%;--sz:3.5rem;--d:2.5s;--del:.3s;--r1:8deg;--r2:-8deg">⭐</div>
+    <div class="i-sticker" style="bottom:12%;left:5%;--sz:2.8rem;--d:3s;--del:.6s;--r1:-12deg;--r2:8deg">🦋</div>
+    <div class="i-sticker" style="bottom:10%;right:4%;--sz:3rem;--d:2.2s;--del:.9s;--r1:10deg;--r2:-10deg">🌈</div>
+    <div class="i-sticker"
+      style="top:18%;left:50%;transform:translateX(-50%);--sz:2.5rem;--d:1.8s;--del:0s;--r1:-5deg;--r2:5deg">✨</div>
+
+    <h1 class="pop-title">HAPPY<br>20/10!</h1>
+    <span class="pop-sub">✦ Ngày của các nàng ✦</span>
+    <button id="goBtn">🎉 Vào xem quà nào!</button>
+  </div>
+
+  <!-- ══ SCENE ══ -->
+  <div id="scene">
+    <canvas id="confCvs"></canvas>
+
+    <!-- decorative stamps -->
+    <div class="stamp" style="top:10px;left:10px;--rot:-12deg;--sc:#03a9f4">★ LOVE ★</div>
+    <div class="stamp" style="bottom:10px;right:10px;--rot:8deg;--sc:#ff3a6e">20/10</div>
+
+    <div class="scene-inner">
+
+      <!-- Banner -->
+      <div class="banner">
+        <span class="banner-emoji">🌸</span>
+        <h1 class="banner-title">Chúc Mừng 20 Tháng 10!</h1>
+        <span class="banner-emoji" style="animation-delay:-.5s">🌼</span>
+      </div>
+      <div class="date-tape">✦ Ngày Phụ Nữ Việt Nam 2026 ✦</div>
+
+      <!-- CSS Flowers Row -->
+      <div class="flower-row" id="flowerRow"></div>
+
+      <!-- Wish Cards -->
+      <div class="cards-wrap" id="cardsWrap"></div>
+
+      <!-- Signature -->
+      <div class="bottom-sig">🎀 Gửi tới bạn! 🎀</div>
+
+    </div>
+  </div>
+
+  <script>
+    // ══ OPEN ══
+    document.getElementById('goBtn').addEventListener('click', () => {
+      const intro = document.getElementById('intro');
+      intro.style.transition = 'opacity .5s'; intro.style.opacity = '0';
+      setTimeout(() => {
+        intro.style.display = 'none';
+        document.getElementById('scene').style.display = 'block';
+        initScene();
+      }, 500);
+    });
+
+    function initScene() {
+      buildFlowers();
+      buildCards();
+      startConfetti();
+    }
+
+    // ══ CSS FLOWERS ══
+    const flowerData = [
+      { sz: '70px', stemh: '55px', pc: '#ff8a65', cc: '#fff176', sw: '2.5s', sd: '0s', sl: '-4deg', sr: '4deg' },
+      { sz: '90px', stemh: '75px', pc: '#f06292', cc: '#ffee58', sw: '3s', sd: '.3s', sl: '-3deg', sr: '5deg' },
+      { sz: '80px', stemh: '65px', pc: '#ba68c8', cc: '#80cbc4', sw: '2.8s', sd: '.6s', sl: '-5deg', sr: '3deg' },
+      { sz: '100px', stemh: '80px', pc: '#4fc3f7', cc: '#fff176', sw: '3.2s', sd: '.1s', sl: '-4deg', sr: '4deg' },
+      { sz: '85px', stemh: '70px', pc: '#ff8a65', cc: '#f06292', sw: '2.6s', sd: '.4s', sl: '-3deg', sr: '5deg' },
+      { sz: '75px', stemh: '58px', pc: '#aed581', cc: '#fff9c4', sw: '2.9s', sd: '.7s', sl: '-5deg', sr: '3deg' },
+      { sz: '95px', stemh: '78px', pc: '#ffcc02', cc: '#e91e63', sw: '3.1s', sd: '.2s', sl: '-4deg', sr: '4deg' },
+    ];
+
+    const CENTERS = ['😊', '💛', '❤️', '💙', '🌟', '💚', '⭐'];
+
+    function buildFlowers() {
+      const row = document.getElementById('flowerRow');
+      flowerData.forEach((f, i) => {
+        const el = document.createElement('div');
+        el.className = 'css-flower';
+        el.style.cssText = `--sz:${f.sz};--stemh:${f.stemh};--pc:${f.pc};--cc:${f.cc};
+      --sw:${f.sw};--sd:${f.sd};--sl:${f.sl};--sr:${f.sr}`;
+        el.innerHTML = `
+      <div class="petals-ring">
+        ${[0, 1, 2, 3, 4, 5, 6, 7].map(() => `<div class="petal"></div>`).join('')}
+        <div class="flower-center">${CENTERS[i]}</div>
+      </div>
+      <div class="flower-stem"></div>`;
+        row.appendChild(el);
+      });
+    }
+
+    // ══ WISH CARDS ══
+    const cards = [
+      { icon: '💖', title: 'Luôn xinh đẹp', body: 'Mong bạn mãi rạng rỡ và tự tin như bông hoa đẹp nhất vườn!', bg: '#fce4ec', tape: 'rgba(255,100,130,.4)', cr: '-2deg', ci: '.1s', hovr: '1deg' },
+      { icon: '📚', title: 'Học giỏi vô địch', body: 'Chúc bạn luôn đạt kết quả cao, làm chủ mọi môn học! 🏆', bg: '#e3f2fd', tape: 'rgba(30,136,229,.35)', cr: '1deg', ci: '.2s', hovr: '-1deg' },
+      { icon: '🌈', title: 'Vui vẻ mỗi ngày', body: 'Mong tiếng cười của bạn không bao giờ tắt.', bg: '#f3e5f5', tape: 'rgba(156,39,176,.35)', cr: '-1.5deg', ci: '.3s', hovr: '1.5deg' },
+      { icon: '⭐', title: 'Tỏa sáng nhé!', body: 'Bạn cá tính, tài năng — đừng giấu đi vẻ đẹp đó! ✨', bg: '#fff8e1', tape: 'rgba(255,180,0,.4)', cr: '2deg', ci: '.4s', hovr: '-1deg' },
+      { icon: '💪', title: 'Mạnh mẽ & tự tin', body: 'Phụ nữ mạnh mẽ không cần ai xác nhận — chỉ cần tin vào chính mình! 🦋', bg: '#e8f5e9', tape: 'rgba(56,142,60,.35)', cr: '-1deg', ci: '.5s', hovr: '1deg' },
+      { icon: '🎉', title: 'Hạnh phúc 20/10', body: 'Chúc một ngày lễ thật vui, thật ý nghĩa và đầy ắp những điều tốt đẹp!', bg: '#ffebee', tape: 'rgba(229,57,53,.35)', cr: '1.5deg', ci: '.6s', hovr: '-1.5deg' },
+    ];
+
+    function buildCards() {
+      const wrap = document.getElementById('cardsWrap');
+      cards.forEach(d => {
+        const c = document.createElement('div'); c.className = 'wish-card';
+        c.style.cssText = `--bg:${d.bg};--tape:${d.tape};--cr:${d.cr};--ci:${d.ci};--hover-r:${d.hovr}`;
+        c.innerHTML = `<span class="card-icon" style="--ci:${d.ci}">${d.icon}</span>
+      <div class="card-title">${d.title}</div>
+      <div class="card-body">${d.body}</div>`;
+        c.addEventListener('click', e => burst(e, c));
+        wrap.appendChild(c);
+      });
+    }
+
+    // ══ CONFETTI (canvas) ══
+    function startConfetti() {
+      const c = document.getElementById('confCvs'), ctx = c.getContext('2d');
+      let W, H;
+      function rs() { W = c.width = innerWidth; H = c.height = innerHeight }
+      rs(); window.addEventListener('resize', rs);
+      const COLS = ['#ff3a6e', '#03a9f4', '#ffcc02', '#4caf50', '#9c27b0', '#ff9800', '#fff'];
+      const pcs = Array.from({ length: 90 }, () => ({
+        x: Math.random() * 1, y: Math.random() * -.5,
+        w: Math.random() * 12 + 4, h: Math.random() * 7 + 3,
+        col: COLS[Math.floor(Math.random() * COLS.length)],
+        rot: Math.random() * Math.PI * 2, rs: (Math.random() - .5) * .1,
+        vx: (Math.random() - .5) * 1.5, vy: Math.random() * 2.5 + 1,
+        sw: Math.random() * 2 + .5, sph: Math.random() * Math.PI * 2,
+      }));
+      let t = 0;
+      (function loop() {
+        t += .02; ctx.clearRect(0, 0, W, H);
+        pcs.forEach(p => {
+          p.x += p.vx / W + Math.sin(t * p.sw + p.sph) * .002;
+          p.y += p.vy / H; p.rot += p.rs;
+          if (p.y > 1.05) { p.y = -0.05; p.x = Math.random() }
+          ctx.save(); ctx.translate(p.x * W, p.y * H); ctx.rotate(p.rot);
+          ctx.fillStyle = p.col; ctx.globalAlpha = .82;
+          ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h); ctx.restore();
+        });
+        requestAnimationFrame(loop);
+      })();
+    }
+
+    // ══ BURST on card click ══
+    const BCOLS = ['#ff3a6e', '#03a9f4', '#ffcc02', '#4caf50', '#9c27b0', '#ff9800', '#fff176', '#f06292'];
+    function burst(e, card) {
+      const rect = card.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2, cy = rect.top + rect.height / 2;
+      for (let i = 0; i < 20; i++) {
+        const p = document.createElement('div'); p.className = 'burst-piece';
+        const ang = Math.random() * Math.PI * 2;
+        const dist = Math.random() * 120 + 40;
+        const sz = Math.random() * 10 + 4;
+        p.style.cssText = `left:${cx}px;top:${cy}px;
+      --w:${sz}px;--h:${sz * .6}px;
+      --col:${BCOLS[Math.floor(Math.random() * BCOLS.length)]};
+      --br:${Math.random() > 0.5 ? '50%' : '3px'};
+      --tx:${Math.cos(ang) * dist}px;--ty:${Math.sin(ang) * dist}px;
+      --tr:${(Math.random() - .5) * 720}deg;
+      --dur:${(Math.random() * .4 + .5).toFixed(2)}s;`;
+        document.body.appendChild(p);
+        setTimeout(() => p.remove(), 700);
+      }
+      // pop emoji
+      const emojis = ['🎉', '⭐', '💖', '🌸', '✨', '🌈', '🎊'];
+      const em = document.createElement('div');
+      em.style.cssText = `position:fixed;left:${cx - 10}px;top:${cy - 10}px;font-size:2rem;
+    pointer-events:none;z-index:60;animation:emojiPop .8s ease-out forwards`;
+      em.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      document.body.appendChild(em);
+      setTimeout(() => em.remove(), 900);
+    }
+
+    // inject emojiPop keyframe
+    const st = document.createElement('style');
+    st.textContent = '@keyframes emojiPop{0%{opacity:1;transform:scale(.5) translateY(0)}100%{opacity:0;transform:scale(1.5) translateY(-80px)}}';
+    document.head.appendChild(st);
+  </script>
+</body>
+
+</html>
